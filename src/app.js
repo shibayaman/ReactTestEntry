@@ -1,8 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-const App = () => {
-  return <h1>Hello World</h1>;
-}
+import Todo from './components/Todo';
+
+const App = () => (
+  <Todo task="go to bed"/>
+);
 
 render(<App />, document.getElementById('root'));
