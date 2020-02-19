@@ -1,0 +1,30 @@
+{
+  "name": "sampletodo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "PORT=3000 node ./src/index.js",
+    "serve:watch": "PORT=3000 nodemon ./src/index.js",
+    "build": "webpack --env.NODE_ENV=development",
+    "build:watch": "npm run build -- --watch",
+    "build:prod": "webpack --env.NODE_ENV=production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "nodemon": "^2.0.2",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}
