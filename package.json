@@ -2,10 +2,9 @@
   "name": "sampletodo",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "serve": "PORT=3000 node ./src/index.js",
-    "serve:watch": "PORT=3000 nodemon ./src/index.js",
+    "serve": "PORT=3000 node ./src/server.js",
+    "serve:watch": "PORT=3000 nodemon ./src/server.js",
     "build": "webpack --env.NODE_ENV=development",
     "build:watch": "npm run build -- --watch",
     "build:prod": "webpack --env.NODE_ENV=production",

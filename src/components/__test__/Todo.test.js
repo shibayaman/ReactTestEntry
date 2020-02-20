@@ -2,7 +2,7 @@ import React from 'react';
 import { render, cleanup, screen } from '@testing-library/react';
 import { toBeInTheDocument } from '@testing-library/jest-dom/matchers';
 
-import Todo from '../components/Todo';
+import Todo from '../Todo';
 
 expect.extend({ toBeInTheDocument });
 afterEach(cleanup);
