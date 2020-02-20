@@ -6,9 +6,18 @@ module.exports = {
     ],
     "@babel/preset-react"
   ],
+  plugins: [
+    ["styled-components", { ssr: false }]
+  ],
   env: {
     test: {
-      "plugins": ["transform-es2015-modules-commonjs"]
+      plugins: [
+        "transform-es2015-modules-commonjs",
+        [
+          "styled-components",
+          { ssr: false }
+        ]
+      ]
     }
   }
 };
