@@ -3,9 +3,10 @@ module.exports.jsonApi = (req, res) => {
   res.json({
     todo: [
       {
-        task: 'go to bed',
-        due: 'now',
-        priority: 'very high'
+        id: 0,
+        task: '洗濯機まわす',
+        due: '今すぐ',
+        priority: 'とても高い'
       }
     ]
   });
