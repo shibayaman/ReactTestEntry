@@ -40,6 +40,7 @@ const Button = styled.button`
   width: 5rem;
   padding: 0.2rem;
   border-radius: 0.5rem;
+  border: 0;
   margin: 0 0.5rem 0 0.5rem;
 `;
 
@@ -50,7 +51,6 @@ export default ({ todo }) => {
   
   const [hovered, setHovered] = useState(false);
 
-  console.log(hovered);
   return(
     <TodoCard onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
       <MainTask>{!hovered ? trimTaskForDisplay(todo.task) : todo.task}</MainTask>

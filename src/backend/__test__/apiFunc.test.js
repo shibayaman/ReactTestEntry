@@ -13,9 +13,10 @@ describe('api test', () => {
     expect(res.json.mock.calls[0][0]).toEqual({
       todo: [
         {
-          task: 'go to bed',
-          due: 'now',
-          priority: 'very high'
+          id: 0,
+          task: '洗濯機まわす',
+          due: '今すぐ',
+          priority: 'とても高い'
         }
       ]
     });
