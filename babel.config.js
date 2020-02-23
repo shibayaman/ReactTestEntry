@@ -5,7 +5,7 @@ module.exports = {
       { 
         modules: false,
         //async/await対応でつまづいたけど時間がないのでひとまず新しいchrome(手元の環境)向けにbabeる。
-        //あとでちゃんと調べる。
+        //TODO: async/await対応ちゃんと調べる。
         targets: {
           chrome: "79"
         }

@@ -8,7 +8,7 @@ describe('api test', () => {
       status: jest.fn(),
     }
    
-    api.jsonApi(req, res);
+    api.getTodo(req, res);
 
     expect(res.json.mock.calls[0][0]).toEqual({
       todo: [
