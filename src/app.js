@@ -15,7 +15,7 @@ const App = () => {
 
   useEffect(() => {
     const requestTasks = async () => {
-      const res = await axios.get('/api');
+      const res = await axios.get('/api/todo');
       setTodos(res.data.todo);
     }
 

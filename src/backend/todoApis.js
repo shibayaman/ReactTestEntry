@@ -12,6 +12,7 @@ const createTodo = (req, res) => {
   if(!validator.hasValidTodo(req.body)) {
     res.status(400);
     res.json({error: 'invalid paramter'});
+    return;
   } 
   
   const { task, due, priority } = req.body;
@@ -28,12 +29,12 @@ const createTodo = (req, res) => {
 
 const updateTodo = (req, res) => {
   if(!validator.hasValidId(req.params)) {
-    res.status(400);
-    res.json({error: 'invalid paramter'});
+    res.status(404);
+    res.json({error: 'invalid id'});
     return;
   }
 
-  const { id } = req.params;
+  const id = parseInt(req.params.id);
   const { task, due, priority } = req.body;
   data.todo[id] = {
     id,
@@ -47,12 +48,12 @@ const updateTodo = (req, res) => {
 
 const deleteTodo = (req, res) => {
   if(!validator.hasValidId(req.params)) {
-    res.status(400);
-    res.json({error: 'invalid paramter'});
+    res.status(404);
+    res.json({error: 'invalid id'});
     return;
   }
 
-  const { id } = req.params;
+  const id = parseInt(req.params.id);
   data.todo = data.todo.filter((todo) => todo.id !== id);
   res.status(200);
   res.send();
