@@ -9,9 +9,9 @@ app.use('/static', express.static(staticPath));
 
 app.use(express.json());
 
-app.get('/api/todo', todoApis.getTodos);
-app.post('/api/todo', todoApis.createTodo);
-app.put('/api/todo/:id', todoApis.updateTodo);
-app.delete('/api/todo/:id', todoApis.deleteTodo);
+app.get('/api/todo', todoApis.all);
+app.post('/api/todo', todoApis.create);
+app.put('/api/todo/:id', todoApis.update);
+app.delete('/api/todo/:id', todoApis.distory);
 
 module.exports = app;

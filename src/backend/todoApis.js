@@ -1,14 +1,14 @@
 const validator = require('./requestValidator');
-const data = require('./todoData');
+const todoModel = require('./todoData');
 
-const getTodos = (req, res) => {
+const all = (req, res) => {
   res.status(200);
   res.json({
-    todo: data.todo
+    todo: todoModel.getAllTodos()
   });
 };
 
-const createTodo = (req, res) => {
+const create = (req, res) => {
   if(!validator.hasValidTodo(req.body)) {
     res.status(400);
     res.json({error: 'invalid paramter'});
@@ -16,18 +16,12 @@ const createTodo = (req, res) => {
   } 
   
   const { task, due, priority } = req.body;
-  const newTodo = {
-    id: data.index++,
-    task,
-    due,
-    priority
-  };
-  data.todo.unshift(newTodo);
+  const newTodo = todoModel.createTodo(task, due, priority);
   res.status(201);
   res.json(newTodo);
 }
 
-const updateTodo = (req, res) => {
+const update = (req, res) => {
   if(!validator.hasValidId(req.params)) {
     res.status(404);
     res.json({error: 'invalid id'});
@@ -36,17 +30,19 @@ const updateTodo = (req, res) => {
 
   const id = parseInt(req.params.id);
   const { task, due, priority } = req.body;
-  data.todo[id] = {
-    id,
-    task: task || data.todo[id].task,
-    due: due || data.todo[id].due,
-    priority: priority || data.todo[id].due
+  const updatedTodo = todoModel.updateTodo(id, task, due, priority);
+
+  if(updatedTodo === null) {
+    res.status(404);
+    res.json({error: 'no matching id'});
+    return;
   }
+
   res.status(201);
-  res.json(data.todo[id]);
+  res.json(updatedTodo);
 }
 
-const deleteTodo = (req, res) => {
+const distory = (req, res) => {
   if(!validator.hasValidId(req.params)) {
     res.status(404);
     res.json({error: 'invalid id'});
@@ -54,14 +50,21 @@ const deleteTodo = (req, res) => {
   }
 
   const id = parseInt(req.params.id);
-  data.todo = data.todo.filter((todo) => todo.id !== id);
+  const distroiedId = todoModel.deleteTodo(id);
+
+  if(distroiedId === null) {
+    res.status(404);
+    res.json({error: 'no matching id'});
+    return;
+  }
+
   res.status(200);
   res.send();
 }
 
 module.exports = {
-  getTodos,
-  createTodo,
-  updateTodo,
-  deleteTodo,
+  all,
+  create,
+  update,
+  distory,
 }
