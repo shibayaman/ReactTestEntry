@@ -83,6 +83,20 @@ describe('PUT /api/todo/:id', () => {
       { id: 0, task: '寝る', due: '今すぐ', priority: 'とても高い' }
     ]);
   });
+
+  it('should return error message when passed id that does not exist', async () => {
+    const todo = { task: 'ご飯食べる', priority: '命より大事' };
+    const expectedResponse = { error: 'no matching id' };
+    const res = 
+      await request(app)
+      .put('/api/todo/1')
+      .send(todo);
+    expect(res.status).toBe(404);
+    expect(res.body).toEqual(expectedResponse);
+    expect(data.todo).toEqual([
+      { id: 0, task: '寝る', due: '今すぐ', priority: 'とても高い' }
+    ]);
+  });
 });
 
 describe('DELETE /api/todo/:id', () => {
@@ -99,6 +113,16 @@ describe('DELETE /api/todo/:id', () => {
     const res = 
       await request(app)
       .delete('/api/todo/abc');
+    expect(res.statusCode).toBe(404);
+    expect(res.body).toEqual(expectedResponse);
+    expect(data.todo).toEqual([{ id: 0, task: '寝る', due: '今すぐ', priority: 'とても高い' }]);
+  });
+
+  it('should return error message when passed id that does not exist', async () => {
+    const expectedResponse = { error: 'no matching id' };
+    const res = 
+      await request(app)
+      .delete('/api/todo/1');
     expect(res.statusCode).toBe(404);
     expect(res.body).toEqual(expectedResponse);
     expect(data.todo).toEqual([{ id: 0, task: '寝る', due: '今すぐ', priority: 'とても高い' }]);
