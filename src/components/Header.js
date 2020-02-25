@@ -27,7 +27,8 @@ export default () => {
       <Circled>と</Circled>
       <Circled>て</Circled>
       <Circled>も</Circled>
-      <Underlined>シンプルなTodoアプリ</Underlined><SmallText>(くそあぷり)</SmallText>
+      <Underlined>シンプルなTodoアプリ</Underlined>
+      <SmallText>(くそあぷり)</SmallText>
     </H1>
   );
 }
