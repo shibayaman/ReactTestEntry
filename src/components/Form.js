@@ -52,11 +52,11 @@ export default ({ addTodo }) => {
   return (
     <Form onSubmit={handleSubmit} autocomplete="off">
       <label htmlFor="taskInput">やること</label><br />
-      <TextInput type="text" id="taskInput" onChange={e => { setTask(e.target.value) }} /><br />
+      <TextInput type="text" id="taskInput" value={task} onChange={e => { setTask(e.target.value) }} /><br />
       <label htmlFor="dueInput">期限</label><br />
-      <TextInput type="text" id="dueInput" onChange={e => { setDue(e.target.value) }} /><br />
+      <TextInput type="text" id="dueInput" value={due} onChange={e => { setDue(e.target.value) }} /><br />
       <label htmlFor="priorityInput">優先度</label><br />
-      <TextInput type="text" id="priorityInput" onChange={e => { setPriority(e.target.value) }} /><br />
+      <TextInput type="text" id="priorityInput" value={priority} onChange={e => { setPriority(e.target.value) }} /><br />
       <AlignRight>
         <Button bgColor="red" type="submit">Add</Button>
       </AlignRight>
