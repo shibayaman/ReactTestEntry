@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+
+import Button from './Button';
 
 const TodoCard = styled.div`
   background-color: white;
-  width: 15rem;
+  min-width: 15rem;
   text-align: center;
+  margin-right: 1rem;
   border-radius: 1rem;
   overflow: hidden;
   border: 1px solid rgb(42, 191, 124);
@@ -33,34 +37,35 @@ const Actions = styled.div`
   padding: 0.5rem;
 `;
 
-const Button = styled.button`
-  background-color: ${({ bgColor }) => bgColor };
-  font-size: 1rem;
-  color: white;
-  width: 5rem;
-  padding: 0.2rem;
-  border-radius: 0.5rem;
-  border: 0;
-  margin: 0 0.5rem 0 0.5rem;
-`;
+export default ({ todo, removeTodo }) => {
+  const { id, task, due, priority } = todo;
+  const [hovered, setHovered] = useState(false);
 
-export default ({ todo }) => {
   const trimTaskForDisplay = (task) => (
     (task.length > 20) ? task.substring(0, 20) + '...' : task
   );
-  
-  const [hovered, setHovered] = useState(false);
 
+  const handleDoneClick = () => {
+    const requestDelete = async () => {
+      const res = await axios.delete(`/api/todo/${id}`).catch((err) => {
+        console.log(err.response.data);
+      });
+      removeTodo(id);
+    }
+
+    requestDelete();
+  };
+  
   return(
     <TodoCard onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
-      <MainTask>{!hovered ? trimTaskForDisplay(todo.task) : todo.task}</MainTask>
+      <MainTask>{!hovered ? trimTaskForDisplay(task) : task}</MainTask>
       <Info>
-        <p>期限: {todo.due}</p>
-        <p>優先度: {todo.priority}</p>
+        <p>期限: {due}</p>
+        <p>優先度: {priority}</p>
       </Info>
       <Actions>
-        <Button bgColor="rgb(42, 191, 124)">Done</Button>
-        <Button bgColor="rgb(245, 130, 59)">Cancel</Button>
+        <Button bgColor="rgb(42, 191, 124)" onClick={handleDoneClick}>Done</Button>
+        <Button bgColor="rgb(245, 130, 59)">Update</Button>
       </Actions>
     </TodoCard>
   );
