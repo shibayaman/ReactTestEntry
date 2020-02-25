@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 import Button from './Button';
+import useTodoInputsState from './useTodoInputsState'
 
 const Form = styled.form`
   display: inline-block;
@@ -13,6 +14,10 @@ const Form = styled.form`
   padding: 1rem;
   text-align: left;
 `;
+
+const Label = styled.label`
+  display: block;
+`
 
 const TextInput = styled.input`
   margin-bottom: 1rem;
@@ -27,9 +32,9 @@ const AlignRight = styled.div`
 `
 
 export default ({ addTodo }) => {
-  const [task, setTask] = useState('');
-  const [due, setDue] = useState('');
-  const [priority, setPriority] = useState('');
+  const [inputs, setInputs] = useTodoInputsState();
+  const {task, due, priority} = inputs;
+  console.log(task, due, priority);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,9 +45,6 @@ export default ({ addTodo }) => {
       }).catch((err) => {
         console.log(err.response.data);
       });
-      setTask('');
-      setDue('');
-      setPriority('');
       addTodo(res.data);
     }
 
@@ -51,12 +53,12 @@ export default ({ addTodo }) => {
 
   return (
     <Form onSubmit={handleSubmit} autocomplete="off">
-      <label htmlFor="taskInput">やること</label><br />
-      <TextInput type="text" id="taskInput" value={task} onChange={e => { setTask(e.target.value) }} /><br />
-      <label htmlFor="dueInput">期限</label><br />
-      <TextInput type="text" id="dueInput" value={due} onChange={e => { setDue(e.target.value) }} /><br />
-      <label htmlFor="priorityInput">優先度</label><br />
-      <TextInput type="text" id="priorityInput" value={priority} onChange={e => { setPriority(e.target.value) }} /><br />
+      <Label htmlFor="taskInput">やること</Label>
+      <TextInput type="text" id="taskInput" value={task} onChange={e => { setInputs({ task: e.target.value }) }} />
+      <Label htmlFor="dueInput">期限</Label>
+      <TextInput type="text" id="dueInput" value={due} onChange={e => { setInputs({ due: e.target.value }) }} />
+      <Label htmlFor="priorityInput">優先度</Label>
+      <TextInput type="text" id="priorityInput" value={priority} onChange={e => setInputs({ priority: e.target.value })} />
       <AlignRight>
         <Button bgColor="red" type="submit">Add</Button>
       </AlignRight>
