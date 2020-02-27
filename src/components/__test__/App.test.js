@@ -19,8 +19,7 @@ axios.get.mockResolvedValue({
 
 axios.post.mockImplementation(
   (_, todo) => {
-    console.log(Object.assign({}, todo, { id: 3 }));
-    return Promise.resolve({ data: Object.assign({}, todo, { id: 3 }) })
+    return Promise.resolve({ data: Object.assign({}, todo, { id: 3 }) });
   }
 );
 
