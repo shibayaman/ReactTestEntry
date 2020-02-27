@@ -15,10 +15,6 @@ afterEach(() => {
   axios.post.mockClear();
 });
 
-test.todo('it should send post request through axios');
-test.todo('it should send request only when all of inputs are filled');
-test.todo('it should call addTodo with "task, due, priority" when request returns 201');
-
 describe('rendering Form Component', () => {
   it('should render into document', () => {
     const { getByLabelText } = render(<Form />);
