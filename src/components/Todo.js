@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import Button from './Button';
 
-//TODO: animationをつけることで劇的にテストするのがむずくなってるので設計から考えなおしたい
+//TODO: animationをつけることで劇的にテストするのがむずくなってるので設計を見直したい
 const fadeIn = keyframes`
   from { opacity: 0; }
   to { opacity: 1; }

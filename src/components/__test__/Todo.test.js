@@ -55,7 +55,18 @@ describe('Task string in Todo card', () => {
 });
 
 describe('when done button is clicked', () => {
-  test.todo('it should call removeTodo with its id');
+  it('should call removeTodo with its id', async () => {
+    const removeTodo = jest.fn();
+    const todo = { id: 0, task: '寝る', due: '今すぐ', priority: 'とても高い' };
+
+    const { getByText } = render(<Todo todo={todo} removeTodo={removeTodo} />);
+
+    fireEvent.click(getByText('Done'));
+    await wait(() => {
+      fireEvent.animationEnd(getByText('Done'));
+      expect(removeTodo).toBeCalledWith(todo.id);
+    });
+  });
 
   it('should send delete request with its id', async () => {
     const todo = { id: 0, task: '寝る', due: '今すぐ', priority: 'とても高い' };
@@ -63,7 +74,7 @@ describe('when done button is clicked', () => {
     const { getByText } = render(<Todo todo={todo} removeTodo={() => {}} />);
     fireEvent.click(getByText('Done'));
     await wait(() => {
-      expect(axios.delete).toHaveBeenCalledWith(`/api/todo/0`);
+      expect(axios.delete).toHaveBeenCalledWith(`/api/todo/` + todo.id);
     });
   });
 });
