@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
 import Button from './Button';
-import useTodoInputsState from './useTodoInputsState'
+import useTodoInputsState from './useTodoInputsState';
 
 const Form = styled.form`
   display: inline-block;
@@ -17,7 +17,7 @@ const Form = styled.form`
 
 const Label = styled.label`
   display: block;
-`
+`;
 
 const TextInput = styled.input`
   margin-bottom: 1rem;
@@ -29,15 +29,18 @@ const TextInput = styled.input`
 
 const AlignRight = styled.div`
   text-align: right;
-`
+`;
 
 export default ({ addTodo }) => {
   const [inputs, setInputs] = useTodoInputsState();
   const {task, due, priority} = inputs;
-  console.log(task, due, priority);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if(!(task && due && priority)) {
+      return;
+    }
 
     const requestCreate = async () => {
       const res = await axios.post('/api/todo', {
@@ -45,11 +48,15 @@ export default ({ addTodo }) => {
       }).catch((err) => {
         console.log(err.response.data);
       });
-      addTodo(res.data);
+
+      if(res) {
+        addTodo(res.data);
+        setInputs({ task: '', due: '', priority: '' });
+      }
     }
 
     requestCreate();
-  }
+  };
 
   return (
     <Form onSubmit={handleSubmit} autocomplete="off">
@@ -64,4 +71,4 @@ export default ({ addTodo }) => {
       </AlignRight>
     </Form>
   );
-}
+};
