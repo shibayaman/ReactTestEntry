@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import Button from './Button';
 
+//TODO: animationをつけることで劇的にテストするのがむずくなってるので設計から考えなおしたい
 const fadeIn = keyframes`
   from { opacity: 0; }
   to { opacity: 1; }
@@ -24,7 +25,7 @@ const TodoCard = styled.div`
   border: 1px solid rgb(42, 191, 124);
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 
-  animation: ${({destorying}) => destorying ? fadeOut : fadeIn } 0.4s linear ;
+  animation: ${({destorying}) => destorying ? fadeOut : fadeIn } 0.3s linear ;
 
   :hover {
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
@@ -63,8 +64,11 @@ export default ({ todo, removeTodo }) => {
       const res = await axios.delete(`/api/todo/${id}`).catch((err) => {
         console.log(err.response.data);
       });
-      setDestorying(true);
-    }
+
+      if(res) {
+        setDestorying(true);
+      }
+    };
 
     requestDelete();
   };
@@ -73,7 +77,7 @@ export default ({ todo, removeTodo }) => {
     if(destorying) {
       removeTodo(id);
     }
-  }
+  };
   
   return(
     <TodoCard

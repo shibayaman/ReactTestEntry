@@ -1,1 +1,0 @@
-export default ({task = '寝る', due = '今すぐ', priority = 'とても高い'} = {}) => ({ task, due, priority });
