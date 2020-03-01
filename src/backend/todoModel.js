@@ -62,5 +62,6 @@ module.exports = {
   getTodoById,
   createTodo,
   updateTodo,
-  deleteTodo
+  deleteTodo,
+  getIndexById
 }
