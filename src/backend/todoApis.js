@@ -1,5 +1,5 @@
 const validator = require('./requestValidator');
-const todoModel = require('./todoData');
+const todoModel = require('./todoModel');
 
 const all = (req, res) => {
   res.status(200);

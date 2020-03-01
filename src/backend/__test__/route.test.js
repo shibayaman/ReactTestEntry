@@ -1,7 +1,7 @@
 const app = require('../route');
 const request = require('supertest');
 
-const { data } = require('../todoData');
+const data = require('../todoData');
 
 beforeEach(() => {
   data.index = 1;
