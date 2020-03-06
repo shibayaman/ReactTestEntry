@@ -39,9 +39,9 @@ const updateTodo = (id, task, due, priority) => {
 
   data.todo[targetIndex] = {
       id,
-      task: task || data.todo[id].task,
-      due: due || data.todo[id].due,
-      priority: priority || data.todo[id].due
+      task: task || data.todo[targetIndex].task,
+      due: due || data.todo[targetIndex].due,
+      priority: priority || data.todo[targetIndex].priority
   }
 
   return data.todo[targetIndex];
