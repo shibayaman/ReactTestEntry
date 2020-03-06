@@ -32,11 +32,6 @@ describe('POST /api/todo', () => {
       .send(todo);
     expect(res.statusCode).toBe(201);
     expect(res.body).toEqual(expectedResponse);
-    expect(data.index).toBe(2);
-    expect(data.todo).toEqual([
-      expectedResponse,
-      { id: 0, task: '寝る', due: '今すぐ', priority: 'とても高い' }
-    ]);
   });
 
   it('should return error message when passed invalid props', async () => {
@@ -48,10 +43,6 @@ describe('POST /api/todo', () => {
       .send(taskMissing);
     expect(res.statusCode).toBe(400);
     expect(res.body).toEqual(expectedResponse);
-    expect(data.index).toBe(1);
-    expect(data.todo).toEqual([
-      { id: 0, task: '寝る', due: '今すぐ', priority: 'とても高い' }
-    ]);
   });
 });
 
@@ -65,9 +56,6 @@ describe('PUT /api/todo/:id', () => {
       .send(todo);
     expect(res.statusCode).toBe(201);
     expect(res.body).toEqual(expectedResponse);
-    expect(data.todo).toEqual([
-      expectedResponse
-    ]);
   });
 
   it('should respond with error message when passed invalid id', async () => {
@@ -79,9 +67,6 @@ describe('PUT /api/todo/:id', () => {
       .send(todo);
     expect(res.statusCode).toBe(404);
     expect(res.body).toEqual(expectedResponse);
-    expect(data.todo).toEqual([
-      { id: 0, task: '寝る', due: '今すぐ', priority: 'とても高い' }
-    ]);
   });
 
   it('should return error message when passed id that does not exist', async () => {
@@ -93,9 +78,6 @@ describe('PUT /api/todo/:id', () => {
       .send(todo);
     expect(res.status).toBe(404);
     expect(res.body).toEqual(expectedResponse);
-    expect(data.todo).toEqual([
-      { id: 0, task: '寝る', due: '今すぐ', priority: 'とても高い' }
-    ]);
   });
 });
 
@@ -105,7 +87,6 @@ describe('DELETE /api/todo/:id', () => {
       await request(app)
       .delete('/api/todo/0');
     expect(res.statusCode).toBe(200);
-    expect(data.todo).toEqual([]);
   });
 
   it('should respond with error message when passed invalid id', async () => {
@@ -115,7 +96,6 @@ describe('DELETE /api/todo/:id', () => {
       .delete('/api/todo/abc');
     expect(res.statusCode).toBe(404);
     expect(res.body).toEqual(expectedResponse);
-    expect(data.todo).toEqual([{ id: 0, task: '寝る', due: '今すぐ', priority: 'とても高い' }]);
   });
 
   it('should return error message when passed id that does not exist', async () => {
@@ -125,6 +105,5 @@ describe('DELETE /api/todo/:id', () => {
       .delete('/api/todo/1');
     expect(res.statusCode).toBe(404);
     expect(res.body).toEqual(expectedResponse);
-    expect(data.todo).toEqual([{ id: 0, task: '寝る', due: '今すぐ', priority: 'とても高い' }]);
   });
 });
