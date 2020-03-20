@@ -11,7 +11,8 @@ module.exports = {
         }
       }
     ],
-    "@babel/preset-react"
+    "@babel/preset-react",
+    '@babel/preset-typescript',
   ],
   plugins: [
     ["styled-components", { ssr: false }],

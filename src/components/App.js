@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-import Todo from './Todo';
+import { Todo } from './Todo';
 import Form from './Form';
 import Header from './Header';
 

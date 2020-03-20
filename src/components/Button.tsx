@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.button`
+export default styled.button<{ bgColor: string }>`
 background-color: ${({ bgColor }) => bgColor };
 font-size: 1rem;
 color: white;

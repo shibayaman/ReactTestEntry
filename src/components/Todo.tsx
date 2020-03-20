@@ -15,7 +15,7 @@ const fadeOut = keyframes`
   to { opacity: 0; }
 `;
 
-const TodoCard = styled.div`
+const TodoCard = styled.div<{ destorying: boolean }>`
   background-color: white;
   min-width: 15rem;
   text-align: center;
@@ -50,12 +50,22 @@ const Actions = styled.div`
   padding: 0.5rem;
 `;
 
-export default ({ todo, removeTodo }) => {
+type TodoProps = {
+  todo: {
+    id: number,
+    task: string,
+    due: string,
+    priority: string
+  },
+  removeTodo: (id: number) => void
+}
+
+export const Todo: React.FC<TodoProps> = ({ todo, removeTodo }) => {
   const { id, task, due, priority } = todo;
   const [hovered, setHovered] = useState(false);
   const [destorying, setDestorying] = useState(false);
 
-  const trimTaskForDisplay = (task) => (
+  const trimTaskForDisplay = (task: string) => (
     (task.length > 20) ? task.substring(0, 20) + '...' : task
   );
 
