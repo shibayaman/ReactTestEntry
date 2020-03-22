@@ -3,7 +3,7 @@ import { render, cleanup, fireEvent, wait } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import axios from 'axios';
 
-import Todo from '../Todo';
+import { Todo } from '../Todo';
 
 jest.mock('axios');
 axios.delete.mockResolvedValue('dummy');

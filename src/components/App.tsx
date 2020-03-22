@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 import { Todo } from './Todo';
-import Form from './Form';
-import Header from './Header';
+import { Form } from './Form';
+import { Header } from './Header';
+import { Todo as TodoType } from './todoTypes'
 
 const TodoContainer = styled.div`
   display: flex;
@@ -12,8 +13,8 @@ const TodoContainer = styled.div`
   padding: 1rem;
 `;
 
-export default () => {
-  const [todos, setTodos] = useState([]);
+export const App: React.FunctionComponent = () => {
+  const [todos, setTodos] = useState<TodoType[]>([]);
 
   useEffect(() => {
     const requestTasks = async () => {
@@ -24,7 +25,7 @@ export default () => {
     requestTasks();
   }, []);
 
-  const removeTodo = id => {
+  const removeTodo = (id: number) => {
     const newTodos = todos.filter(todo => todo.id !== id);
     setTodos(newTodos);
   };
@@ -36,7 +37,7 @@ export default () => {
   //   setTodos(newTodos);
   // };
 
-  const addTodo = newTodo => {
+  const addTodo = (newTodo: TodoType) => {
     const newTodos = [...todos];
     newTodos.unshift(newTodo);
     setTodos(newTodos);

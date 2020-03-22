@@ -6,8 +6,8 @@
     "strict": true,
     "esModuleInterop": true,
     "lib": ["ES2020", "DOM"],
-    //styled-componentsが@types/react-nativeを勝手にインストールしたがるので適用するtypeを指定
+    //styled-componentsが@types/react-nativeを勝手にインストールするのでautomatic inclusionをoffる
     //https://github.com/DefinitelyTyped/DefinitelyTyped/issues/33311
-    "types": ["react", "react-dom", "styled-components"]
+    "types": []
   }
 }

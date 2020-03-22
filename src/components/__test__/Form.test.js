@@ -3,7 +3,7 @@ import { render, cleanup, fireEvent, wait, act } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import axios from 'axios';
 
-import Form from '../Form';
+import { Form } from '../Form';
 
 jest.mock('axios');
 axios.post.mockResolvedValue(

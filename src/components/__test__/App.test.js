@@ -3,7 +3,7 @@ import { render, cleanup, fireEvent, wait } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import axios from 'axios';
 
-import App from '../App';
+import { App } from '../App';
 
 afterEach(cleanup);
 

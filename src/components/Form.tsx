@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 import Button from './Button';
-import useTodoInputsState from './useTodoInputsState';
+import { useTodoInputsState } from './useTodoInputsState';
+import { Todo as TodoType } from './todoTypes';
 
-const Form = styled.form`
+const StyledForm = styled.form`
   display: inline-block;
   margin: 2rem;
   background-color: white;
@@ -31,11 +32,15 @@ const AlignRight = styled.div`
   text-align: right;
 `;
 
-export default ({ addTodo }) => {
-  const [inputs, setInputs] = useTodoInputsState();
-  const {task, due, priority} = inputs;
+type FormProps = {
+  addTodo: (newTodo: TodoType) => void
+}
 
-  const handleSubmit = (e) => {
+export const Form: React.FC<FormProps> = ({ addTodo }) => {
+  const [inputs, setInputs] = useTodoInputsState();
+  const { task, due, priority } = inputs;
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if(!(task && due && priority)) {
@@ -59,7 +64,7 @@ export default ({ addTodo }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} autocomplete="off">
+    <StyledForm onSubmit={handleSubmit}>
       <Label htmlFor="taskInput">やること</Label>
       <TextInput type="text" id="taskInput" value={task} onChange={e => { setInputs({ task: e.target.value }) }} />
       <Label htmlFor="dueInput">期限</Label>
@@ -69,6 +74,6 @@ export default ({ addTodo }) => {
       <AlignRight>
         <Button bgColor="red" type="submit">Add</Button>
       </AlignRight>
-    </Form>
+    </StyledForm>
   );
 };
