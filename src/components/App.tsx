@@ -13,7 +13,7 @@ const TodoContainer = styled.div`
   padding: 1rem;
 `;
 
-export const App: React.FunctionComponent = () => {
+export const App: React.FC = () => {
   const [todos, setTodos] = useState<TodoType[]>([]);
 
   useEffect(() => {

@@ -21,7 +21,7 @@ const Underlined = styled.span`
 const SmallText = styled.span`
   font-size: 1rem;
 `
-export const Header = () => {
+export const Header: React.FC = () => {
   return(
     <H1>
       <Circled>と</Circled>
