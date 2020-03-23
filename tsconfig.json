@@ -6,8 +6,13 @@
     "strict": true,
     "esModuleInterop": true,
     "lib": ["ES2020", "DOM"],
+
     //styled-componentsが@types/react-nativeを勝手にインストールするのでautomatic inclusionをoffる
     //https://github.com/DefinitelyTyped/DefinitelyTyped/issues/33311
-    "types": []
+    "types": ["node"],
+
+    //フロント側の出力はwebpackとbabelを使うのでcommonJSで出力してよい
+    //てかデフォが target === "ES3" or "ES5" ? "CommonJS" : "ES6" なので指定しなくていいけど備忘録として
+    "module": "CommonJS"
   }
 }

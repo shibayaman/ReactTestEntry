@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import Button from './Button';
 import { useTodoInputsState } from './useTodoInputsState';
-import { Todo as TodoType } from './todoTypes';
+import { Todo as TodoType } from '../shared/todoTypes';
 
 const StyledForm = styled.form`
   display: inline-block;

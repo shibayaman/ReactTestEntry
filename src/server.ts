@@ -1,4 +1,4 @@
-const app = require('./backend/route');
+import { app } from './backend/route';
 
 const PORT = process.env.PORT || 3000;
 

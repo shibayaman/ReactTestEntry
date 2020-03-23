@@ -1,14 +1,16 @@
-const validator = require('./requestValidator');
-const todoModel = require('./todoModel');
+import { Request, Response } from 'express';
 
-const all = (req, res) => {
+import * as validator from './requestValidator';
+import * as todoModel from './todoModel';
+
+export const all = (req: Request, res: Response) => {
   res.status(200);
   res.json({
     todo: todoModel.getAllTodos()
   });
 };
 
-const create = (req, res) => {
+export const create = (req: Request, res: Response) => {
   if(!validator.hasValidTodo(req.body)) {
     res.status(400);
     res.json({error: 'invalid paramter'});
@@ -21,7 +23,7 @@ const create = (req, res) => {
   res.json(newTodo);
 }
 
-const update = (req, res) => {
+export const update = (req: Request, res: Response) => {
   if(!validator.hasValidId(req.params)) {
     res.status(404);
     res.json({error: 'invalid id'});
@@ -42,7 +44,7 @@ const update = (req, res) => {
   res.json(updatedTodo);
 }
 
-const distory = (req, res) => {
+export const distory = (req: Request, res: Response) => {
   if(!validator.hasValidId(req.params)) {
     res.status(404);
     res.json({error: 'invalid id'});
@@ -60,11 +62,4 @@ const distory = (req, res) => {
 
   res.status(200);
   res.send();
-}
-
-module.exports = {
-  all,
-  create,
-  update,
-  distory,
 }

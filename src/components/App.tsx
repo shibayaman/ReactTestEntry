@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Todo } from './Todo';
 import { Form } from './Form';
 import { Header } from './Header';
-import { Todo as TodoType } from './todoTypes'
+import { Todo as TodoType } from '../shared/todoTypes'
 
 const TodoContainer = styled.div`
   display: flex;

@@ -1,5 +1,5 @@
 //今のとこデータベース周りまで作る気は無いのでインメモリーで対応
-const data = {
+export const data = {
   index: 1,
   todo: [
     {
@@ -10,5 +10,3 @@ const data = {
     },
   ]
 };
-
-module.exports = data;

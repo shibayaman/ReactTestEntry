@@ -1,15 +1,17 @@
-const data = require('./todoData');
+// const data = require('./todoData');
+import { data } from './todoData';
+import { Todo } from '../shared/todoTypes';
 
-const getIndexById = id => {
+export const getIndexById = (id: number): number | null => {
   const targetIndex = data.todo.findIndex(({ id: todoId }) => todoId === id);
   return targetIndex !== -1 ? targetIndex : null;
 }
 
-const getAllTodos = () => {
+export const getAllTodos = (): Todo[] => {
   return data.todo;
 }
 
-const getTodoById = id => {
+export const getTodoById = (id: number): Todo | null => {
   const targetIndex = getIndexById(id);
   if(!targetIndex) {
     return null;
@@ -18,7 +20,11 @@ const getTodoById = id => {
   return data.todo[targetIndex];
 }
 
-const createTodo = (task, due, priority) => {
+export const createTodo = (
+  task: string,
+  due: string,
+  priority: string
+): Todo => {
   const newTodo = {
     id: data.index++,
     task,
@@ -31,7 +37,12 @@ const createTodo = (task, due, priority) => {
   return newTodo;
 }
 
-const updateTodo = (id, task, due, priority) => {
+export const updateTodo = (
+  id: number,
+  task: string,
+  due: string,
+  priority: string
+): Todo | null => {
   const targetIndex = getIndexById(id);
   if(targetIndex === null) {
     return null;
@@ -47,7 +58,7 @@ const updateTodo = (id, task, due, priority) => {
   return data.todo[targetIndex];
 };
 
-const deleteTodo = id => {
+export const deleteTodo = (id: number): number | null => {
   const targetIndex = getIndexById(id);
   if(targetIndex === null) {
     return null;
@@ -55,13 +66,4 @@ const deleteTodo = id => {
 
   data.todo.splice(targetIndex, 1);
   return id;
-}
-
-module.exports = {
-  getAllTodos,
-  getTodoById,
-  createTodo,
-  updateTodo,
-  deleteTodo,
-  getIndexById
 }

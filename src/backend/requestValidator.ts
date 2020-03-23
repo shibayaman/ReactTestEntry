@@ -1,8 +1,8 @@
-const hasValidTodo = ({ task, due, priority }) => {
+export const hasValidTodo = ({ task, due, priority }: any): boolean => {
   return(task && due && priority);
 }
 
-const hasValidId = ({ id }) => {
+export const hasValidId = ({ id }: any): boolean => {
   //時間ないのでとりあえずregxで処理
   //TODO: numberのparse周りちゃんと調べる
   if(!/^\d+$/.test(id)) {
@@ -10,9 +10,4 @@ const hasValidId = ({ id }) => {
   }
 
   return true;
-}
-
-module.exports = {
-  hasValidTodo,
-  hasValidId,
 }
