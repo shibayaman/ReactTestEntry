@@ -1,5 +1,5 @@
-const api = require('../todoModel');
-const data = require('../todoData');
+import * as api from '../todoModel';
+import { data } from '../todoData';
 
 beforeEach(() => {
   data.index = 5;
