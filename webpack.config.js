@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = env => ({
   mode: env.NODE_ENV || "production",
-  entry: "./src/app.js",
+  entry: "./src/app.tsx",
   output: {
     path: path.resolve(__dirname, "public/js"),
     filename: "bundle.js",
